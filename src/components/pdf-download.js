@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import Icon from './icon';
+import Icon, { iconNames } from './icon';
 
 const PdfDownload = ({ path }) => {
   const data = useStaticQuery(graphql`
@@ -14,12 +14,9 @@ const PdfDownload = ({ path }) => {
     }
   `);
 
-  const productPath = path
-    .split('/')
-    .slice(0, 3)
-    .join('/');
+  const productPath = path.split('/').slice(0, 3).join('/');
 
-  const file = data.allFile.nodes.find(pdf => {
+  const file = data.allFile.nodes.find((pdf) => {
     const productVersionPath = pdf.absolutePath
       .split('/')
       .slice(-3, -1)
@@ -32,7 +29,7 @@ const PdfDownload = ({ path }) => {
       <div className="mt-4">
         <a href={file.publicURL}>
           <Icon
-            iconName="PDF"
+            iconName={iconNames.PDF}
             className="fill-orange mr-1 position-relative top-minus-2"
             width="16"
             height="auto"
